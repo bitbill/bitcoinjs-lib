@@ -23,14 +23,18 @@ function vectorSize (someVector) {
 }
 
 function Transaction () {
-  this.version = 3
+  this.version = 1
   this.locktime = 0
   this.ins = []
   this.outs = []
   this.joinsplits = []
-  this.versionGroupId = '0x03c48270'
-  this.expiry = 0
-  this.zcash = true
+}
+
+Transaction.prototype.setOverwinter = (expiry, versionGroupId, version) => {
+  this.zcash = true;
+  this.version = Math.max((version||3), 3);
+  this.versionGroupId=(versionGroupId||0x03c48270);
+  this.expiry=(expiry||0);
 }
 
 Transaction.DEFAULT_SEQUENCE = 0xffffffff

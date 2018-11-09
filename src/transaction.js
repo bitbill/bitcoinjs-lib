@@ -31,8 +31,9 @@ function Transaction () {
   this.versionGroupId = '0x03c48270'
   this.expiry = 0
   this.zcash = true
-  this.spendDescs = [];
-  this.outputDescs = [];
+  this.spendDescs = []
+  this.outputDescs = []
+  this.valueBalance = 0
 }
 
 Transaction.DEFAULT_SEQUENCE = 0xffffffff

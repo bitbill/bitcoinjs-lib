@@ -512,6 +512,10 @@ TransactionBuilder.prototype.setLockTime = function (locktime) {
 TransactionBuilder.prototype.setVersion = function (version) {
   typeforce(types.UInt32, version)
 
+  if (!this.network.consensusBranchId.hasOwnProperty(this.tx.version)) {
+    throw new Error('Unsupported Zcash transaction')
+  }
+
   // XXX: this might eventually become more complex depending on what the versions represent
   this.tx.version = version
 }

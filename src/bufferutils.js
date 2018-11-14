@@ -19,6 +19,13 @@ function readUInt64LE (buffer, offset) {
   return b + a
 }
 
+function readInt64LE (buffer, offset) {
+  var a = buffer.readUInt32LE(offset)
+  var b = buffer.readInt32LE(offset + 4)
+  b *= 0x100000000
+  return b + a
+}
+
 function writeUInt64LE (buffer, value, offset) {
   verifuint(value, 0x001fffffffffffff)
 
@@ -48,6 +55,7 @@ module.exports = {
   readPushDataInt: pushdata.decode,
   readUInt64LE: readUInt64LE,
   readVarInt: readVarInt,
+  readInt64LE: readInt64LE,
   varIntBuffer: varuint.encode,
   varIntSize: varuint.encodingLength,
   writePushDataInt: pushdata.encode,

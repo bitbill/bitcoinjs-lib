@@ -65,7 +65,7 @@ Transaction.PREVOUTS_HASH_PERSON = new Buffer('ZcashPrevoutHash')
 Transaction.SEQUENCE_HASH_PERSON = new Buffer('ZcashSequencHash')
 Transaction.OUTPUTS_HASH_PERSON = new Buffer('ZcashOutputsHash')
 Transaction.JOINSPLITS_HASH_PERSON = new Buffer('ZcashJSplitsHash')
-Transaction.OVERWINTER_HASH_PERSON = Buffer.concat([new Buffer('ZcashSigHash'), Buffer.from('191ba85b', 'hex')])
+Transaction.OVERWINTER_HASH_PERSON = Buffer.concat([new Buffer('ZcashSigHash'), Buffer.from('bb09b876', 'hex')])
 
 // Sapling note magic values, copied from src/zcash/Zcash.h
 var NOTEENCRYPTION_AUTH_BYTES = 16;

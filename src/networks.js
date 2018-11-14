@@ -11,7 +11,15 @@ module.exports = {
     },
     pubKeyHash: 0x1cb8,
     scriptHash: 0x1cbd,
-    wif: 0x80
+    wif: 0x80,
+    // This parameter was introduced in version 3 to allow soft forks, for version 1 and 2 transactions we add a
+    // dummy value.
+    consensusBranchId: {
+        1: 0x00,
+        2: 0x00,
+        3: 0x5ba81b19,
+        4: 0x76b809bb
+    }
   },
   testnet: {
     messagePrefix: '\x18Bitcoin Signed Message:\n',
@@ -22,7 +30,13 @@ module.exports = {
     },
     pubKeyHash: 0x6f,
     scriptHash: 0xc4,
-    wif: 0xef
+    wif: 0xef,
+    consensusBranchId: {
+        1: 0x00,
+        2: 0x00,
+        3: 0x5ba81b19,
+        4: 0x76b809bb
+    }
   },
   litecoin: {
     messagePrefix: '\x19Litecoin Signed Message:\n',

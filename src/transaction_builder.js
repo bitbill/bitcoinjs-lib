@@ -509,12 +509,14 @@ TransactionBuilder.prototype.setLockTime = function (locktime) {
   this.tx.locktime = locktime
 }
 
-TransactionBuilder.prototype.setVersion = function (version) {
+TransactionBuilder.prototype.setVersion = function (version, overwinter = true) {
   typeforce(types.UInt32, version)
 
   if (!this.network.consensusBranchId.hasOwnProperty(this.tx.version)) {
     throw new Error('Unsupported Zcash transaction')
   }
+
+  this.tx.overwintered = (overwinter ? 1 : 0)
 
   // XXX: this might eventually become more complex depending on what the versions represent
   this.tx.version = version
@@ -725,7 +727,7 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
   var signatureHash
   if (input.witness) {
     signatureHash = this.tx.hashForWitnessV0(vin, input.signScript, input.value, hashType)
-  } else if (overwintered) {
+  } else if (overwintered || this.tx.overwintered) {
     signatureHash = this.tx.hashForZIP143(vin, input.signScript, witnessValue, hashType)
   } else {
     signatureHash = this.tx.hashForSignature(vin, input.signScript, hashType)

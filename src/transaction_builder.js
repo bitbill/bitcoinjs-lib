@@ -728,7 +728,7 @@ TransactionBuilder.prototype.sign = function (vin, keyPair, redeemScript, hashTy
   if (input.witness) {
     signatureHash = this.tx.hashForWitnessV0(vin, input.signScript, input.value, hashType)
   } else if (overwintered || this.tx.overwintered) {
-    signatureHash = this.tx.hashForZIP143(vin, input.signScript, input.value, hashType)
+    signatureHash = this.tx.hashForZIP143(vin, input.signScript, witnessValue, hashType)
   } else {
     signatureHash = this.tx.hashForSignature(vin, input.signScript, hashType)
   }
